@@ -1,0 +1,98 @@
+<h1 align="center">Transparency Factor</h1>
+<body>The Transparency and Openness Promotion Guidelines provide a common framework for evaluation how journals, publishers, and funding agencies reward transparency and rigor over novelty. Transparency scores <b>increase visibility</b> of journal policies as a mechanism for promoting valued research practices, <b>promote journals with strong policies</b> for promoting openness and reproducibility, and <b>provide an alternative metric to the Impact Factor</b> that evaluates journal process and policies. The purpose of the Transparency Score is to <b>improve alignment of scientific values with scientific practices.</b> </body> <br>
+<div class="row">
+    <button mat-raised-button color="accent" style="margin-right: 10px" (click)='onCompare()'>Compare</button>
+<button mat-raised-button style="margin-right: 10px" (click)='showAll()'>Show All</button>
+<button mat-raised-button style="margin-right: 10px" color="primary" (click)='onPsycClick()'>Psychology</button>
+<button mat-raised-button style="margin-right: 10px" color="primary" (click)='onEcologyClick()'>Ecology</button>
+<button mat-raised-button style="margin-right: 10px" color="primary" (click)='onPhysicsClick()'>Physics</button>
+<mat-form-field style="width: 35%;">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+</mat-form-field>
+</div>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <!-- selection Column -->
+    <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>  </th>
+    <td mat-cell *matCellDef="let element">
+       <mat-checkbox (click)='onSelectClick(element)'>
+      </mat-checkbox> </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="journal">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Journal </th>
+    <td mat-cell *matCellDef="let element"> {{element.journal}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="citation">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Citation </th>
+    <td mat-cell *matCellDef="let element"> {{element.citation}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="data">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
+    <td mat-cell *matCellDef="let element"> {{element.data}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="materials">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Materials </th>
+    <td mat-cell *matCellDef="let element"> {{element.materials}} </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="code">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Code </th>
+    <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="design">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Design </th>
+    <td mat-cell *matCellDef="let element"> {{element.design}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="studyPre">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Study Prereg </th>
+    <td mat-cell *matCellDef="let element"> {{element.studyPre}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="analysisPre">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Analysis Prereg </th>
+    <td mat-cell *matCellDef="let element"> {{element.analysisPre}} </td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="replication">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Study Prereg </th>
+    <td mat-cell *matCellDef="let element"> {{element.studyPre}} </td>
+  </ng-container>
+
+    <!-- Weight Column -->
+  <ng-container matColumnDef="publication">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Publication Bias </th>
+    <td mat-cell *matCellDef="let element"> {{element.publication}} </td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="tf">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Average 
+      <mat-icon #tooltip="matTooltip"
+        matTooltip="Transparency Factor"
+       matTooltipPosition="above">info</mat-icon> </th>
+    <td mat-cell *matCellDef="let element"> {{element.tf}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table> <br>
+<div class="row">
+<button mat-raised-button (click)="openDialog()" style="margin-right: 10px" >Journals: Increase Your Score</button>
+<button mat-raised-button style="margin-right: 10px" >See the Journal Evaluation Rubric</button>
+</div>
